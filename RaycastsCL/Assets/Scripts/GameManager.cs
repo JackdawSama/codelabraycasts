@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject target;
+    public GameObject player;
     Vector3 randomPos;
 
-    Text playerScore;
+    public Text playerScore;
+    public Text timeOnScreen;
 
     bool isRunning;
 
-    MovePlayer scoreCounter;
+    public float time = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +25,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        randomPos = new Vector3(Random.Range(-6f,6f),transform.position.y,Random.Range(-6f,6f));
+        Timer();                                                        //starts timer
+        randomPos = new Vector3(Random.Range(-6f,6f),transform.position.y,Random.Range(-6f,6f));    //initialises a random spawn position
 
-        StartCoroutine("ItemSpawner");
+        StartCoroutine("ItemSpawner");                                  //coroutine to spawn targets after a certain time limit
+
+        playerScore.text = player.GetComponent<MovePlayer>().score.ToString();               //gets reference to the player and updates player score
     }
 
     IEnumerator ItemSpawner()
@@ -41,5 +46,33 @@ public class GameManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    //function to have a timer
+    void Timer()
+    {
+        if(time > 0)
+        {
+            time -= Time.deltaTime;                                 //counts down time
+        }
+        else
+        {
+            time = 0;                                               //in case of timer going to negative it resets the timer to 0 for accuracy reasons
+        }
+
+        DisplayTime(time);
+    }
+
+    void DisplayTime(float displayTime)
+    {
+        if(displayTime < 0)                                         //checks for negative time and resets it to zero
+        {
+            displayTime = 0;
+        }
+
+        float minutes = Mathf.FloorToInt(displayTime / 60);        //divides by 60 for minutes
+        float seconds = Mathf.FloorToInt(displayTime % 60);        //modulo by 60 for seconds
+
+        timeOnScreen.text = string.Format("{0:00} : {1:00}", minutes, seconds);     //displays time on MM::SS format
     }
 }

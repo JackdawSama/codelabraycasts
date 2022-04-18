@@ -7,7 +7,7 @@ public class MovePlayer : MonoBehaviour
 {
     public Camera cam;
     public float maxRange;
-    int score;
+    public int score;
     Ray ray;
     RaycastHit hit;
     public NavMeshAgent player;                                         //reference to the player component's NavMesh Agent
