@@ -11,10 +11,6 @@ public class MovePlayer : MonoBehaviour
     Ray ray;
     RaycastHit hit;
     public NavMeshAgent player;                                         //reference to the player component's NavMesh Agent
-    Vector3 eyeposition;
-    Vector3 mousePos;
-    Vector3 dir;
-    RaycastHit hitter;
 
     // Start is called before the first frame update
     void Start()
