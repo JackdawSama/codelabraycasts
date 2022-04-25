@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine("ItemSpawner");                                  //coroutine to spawn targets after a certain time limit
 
-        playerScore.text = player.GetComponent<MovePlayer>().score.ToString();               //gets reference to the player and updates player score
+        playerScore.text = player.GetComponent<PlayerLook>().score.ToString();               //gets reference to the player and updates player score
     }
 
     IEnumerator ItemSpawner()
