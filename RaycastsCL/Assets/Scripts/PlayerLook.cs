@@ -8,7 +8,6 @@ public class PlayerLook : MonoBehaviour
     public float mouseSensitivity = 100f;
 
     public Transform playerBody;
-    //public GameObject hitEffect;
     public Camera fpsCam;
 
     public int score = 0;
@@ -45,9 +44,6 @@ public class PlayerLook : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))            //checks if raycast hits an object
         {
-            // GameObject impact = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));     //instantiates an object on hit
-            // Destroy(impact, 2f);                                                                            //destroys the object instantiated after 2s
-
             TargetScript target = hit.transform.GetComponent<TargetScript>();                               //references the TargetScript on the object the ray hits
 
             if(target != null)                                                                              //checks if the target hit has the TargetScript

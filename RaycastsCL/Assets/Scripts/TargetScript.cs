@@ -8,7 +8,7 @@ public class TargetScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        amplitude = 1f;
+        amplitude = 1f;                                                             //sets a default amplitude value
     }
 
     // Update is called once per frame
@@ -17,16 +17,16 @@ public class TargetScript : MonoBehaviour
             TrigMov();                                                              //class the TrigMov function to oscillate the target
     }
 
-    void TrigMov()                                                              //function to make the target socillate along the y-axis
+    void TrigMov()                                                                  //function to make the target socillate along the y-axis
     {
-        float x = Mathf.Sin(Time.time) * amplitude;
-        float y = transform.position.y;
-        float z = transform.position.z;
+        float x = Mathf.Sin(Time.time) * amplitude;                                 //makes the object oscilate along the X based on the amplitude
+        float y = transform.position.y;                                             //updates the position along y
+        float z = transform.position.z;                                             //updates the position along y
 
-        transform.position = new Vector3(x, y, z);
+        transform.position = new Vector3(x, y, z);                                  //updates the position of the object
     }
 
-    public void Die()
+    public void Die()                                                               //public function to destroy the object
     {
         Destroy(gameObject);
     }
